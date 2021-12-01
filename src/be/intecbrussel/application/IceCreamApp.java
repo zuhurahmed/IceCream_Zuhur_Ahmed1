@@ -25,16 +25,19 @@ public class IceCreamApp {
             Eatable orderOne = iceCreamSeller.orderCone(balls);
             Eatable orderTwo = iceCreamSeller.orderIceRocket();
             Eatable orderThird = iceCreamSeller.orderMagnum(Magnum.MagnumType.MILKCHOCOLATE);
+        
             Eatable[] orders = new Eatable[]{orderOne, orderTwo, orderThird};
 //Call the eat methode on
 
             for (Eatable iceCream : orders) {
                 iceCream.eat();
-                System.out.println(Arrays.toString(orders));
+              
 
             //total profit
-
-            System.out.println("Total Profit: " + "€"+iceCreamSeller.getProfit());
+         //System.out.println(Arrays.toString(balls));
+        System.out.println("Total Profit: " + "€" + iceCreamSeller.getProfit());
+        
+                
 
         }
     }
