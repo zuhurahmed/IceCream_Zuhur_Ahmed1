@@ -26,7 +26,7 @@ public class IceCreamApp {
             Eatable orderTwo = iceCreamSeller.orderIceRocket();
             Eatable orderThird = iceCreamSeller.orderMagnum(Magnum.MagnumType.MILKCHOCOLATE);
             Eatable[] orders = new Eatable[]{orderOne, orderTwo, orderThird};
-//Call the methode on
+//Call the eat methode on
 
             for (Eatable iceCream : orders) {
                 iceCream.eat();
