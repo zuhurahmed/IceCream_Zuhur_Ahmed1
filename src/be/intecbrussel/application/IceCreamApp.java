@@ -13,12 +13,8 @@ public class IceCreamApp {
     public static void main(String[] args) throws NoMoreIceCreamException, Exception {
 //IceCreamSalon
             PriceList priceList = new PriceList(1.2, 1.5, 2.5);
-            Stock stock=new Stock( 2,4,5,4 );
-            IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList);
-// IceCreamCar
-            PriceList priceListCar = new PriceList(1.5, 1.3, 2);
-            Stock stockCar = new Stock(1,2,1,1);
-            IceCreamSeller iceCreamCar = new IceCreamCar(priceList);
+         IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList);
+
 
             /// Eatable in Array+ orders Methode
             Cone.Flavor[] balls = {Cone.Flavor.BANANA, Cone.Flavor.CHOCOLATE, Cone.Flavor.MOKKA, Cone.Flavor.LEMON};
@@ -27,7 +23,7 @@ public class IceCreamApp {
             Eatable orderThird = iceCreamSeller.orderMagnum(Magnum.MagnumType.MILKCHOCOLATE);
         
             Eatable[] orders = new Eatable[]{orderOne, orderTwo, orderThird};
-//Call the eat methode on
+//Call eat methode 
 
             for (Eatable iceCream : orders) {
                 iceCream.eat();
