@@ -14,63 +14,60 @@ import be.intecbrussel.eatables.Magnum;
             this.priceList = priceList;
         }
 
-        // Constructor with two a parameters
+        // Constructor with two parameters
         public IceCreamCar(double profit, Stock stock) {
             this.profit = profit;
             this.stock = stock;
 
+       public Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException {
+        if (this.stock.getBalls() >= balls.length && this.stock.getCones() > 0) {
+            return this.prepareCone(balls);
+        } else {
+            throw new NoMoreIceCreamException("No more Cones or balls in stock");
+        }
+    }
+
+    private Cone prepareCone(Flavor[] balls) throws NoMoreIceCreamException {
+        return new Cone(balls);
+    }
+
+    public IceRocket orderIceRocket() throws NoMoreIceCreamException {
+        if (this.stock.getIceRockets() > 0) {
+            return this.prepareRocket();
+        } else {
+            throw new NoMoreIceCreamException("No more Rocket in the stock");
+        }
+    }
+
+    private IceRocket prepareRocket() {
+        this.profit += this.priceList.getRocketPrice();
+        this.stock.setIceRockets(1);
+        return new IceRocket();
+    }
+
+    public Magnum orderMagnum(MagnumType magnumType) throws NoMoreIceCreamException {
+        if (this.stock.getMagni() > 0) {
+            return this.prepareMagnum(magnumType);
+        } else {
+            throw new NoMoreIceCreamException("No more Magnum in the stock");
+        }
+    }
+
+    private Magnum prepareMagnum(MagnumType magnumType) throws NoMoreIceCreamException {
+        while(this.stock.getMagni() > 0) {
         }
 
-        @Override
-        public Cone orderCone(Cone.Flavor[] balls) throws NoMoreIceCreamException {
-            if (stock.getBalls() >= balls.length && stock.getCones() > 0) {
-                return prepareCone(balls);
-            } else {
-                throw new NoMoreIceCreamException("No more Cones or balls in stock");
-            }
-        }
+        this.profit += this.priceList.getMagnumStandardPrice(magnumType);
+        return new Magnum(magnumType);
+    }
 
+    public double getProfit() {
+        return this.profit;
+    }
 
-        //private
-        private Cone prepareCone(Cone.Flavor[] balls) throws NoMoreIceCreamException {
-            return new Cone(balls);
-
-        }
-
-        //Override Methode
-        @Override
-        public IceRocket orderIceRocket() throws NoMoreIceCreamException {
-            if (stock.getIceRockets() > 0) {
-                return prepareRocket();
-            } else
-                throw new NoMoreIceCreamException("No more Rocket in the stock");
-        }
-
-        private IceRocket prepareRocket() {
-            profit += priceList.getRocketPrice();
-            stock.setIceRockets(1);
-            return new IceRocket();
-        }
-
-        @Override
-        public Magnum orderMagnum(Magnum.MagnumType magnumType) throws NoMoreIceCreamException {
-            if (stock.getMagni() > 0) {
-                return prepareMagnum(magnumType);
-            } else
-                throw new NoMoreIceCreamException("No more Magnum in the stock");
-        }
-
-        private Magnum prepareMagnum(Magnum.MagnumType magnumType) throws NoMoreIceCreamException {
-            while (stock.getMagni( ) > 0) ;
-            profit += priceList.getMagnumStandardPrice(magnumType);
-            return new Magnum(magnumType);
-        }
-
-        @Override
-        public double getProfit() {
-            return this.profit;
-        }
-
+    public String toString() {
+        return "IceCreamCar{priceList=" + this.priceList + ", stock=" + this.stock + ", profit=" + this.profit + "}";
+    }
 
         }
 
