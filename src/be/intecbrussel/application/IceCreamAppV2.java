@@ -9,21 +9,20 @@ import be.intecbrussel.seller.*;
 
 public class IceCreamAppV2 {
         public static void main(String[] args)   {
-            // Use IceCreamCar instantie-- C-salon
+           
             PriceList priceList = new PriceList(2, 1.5, 2.5);
             Stock stock = new Stock(4, 1, 3, 1);
             IceCreamSeller iceCreamCar = new IceCreamCar(100, stock);
 
 
 
-            //
-            var iceCreamSeller = iceCreamCar;
+         
             Eatable[] orders = new Eatable[]{};
             try {
                 Eatable[] orders1 =
-                        {iceCreamSeller.orderCone( new Cone.Flavor[]{Cone.Flavor.BANANA, Cone.Flavor.CHOCOLATE, Cone.Flavor.MOKKA}),
-                                iceCreamSeller.orderMagnum(Magnum.MagnumType.ALPINENUTS),
-                                iceCreamSeller.orderMagnum(Magnum.MagnumType.MILKCHOCOLATE), iceCreamSeller.orderIceRocket()};
+                        {iceCreamCar.orderCone( new Cone.Flavor[]{Cone.Flavor.BANANA, Cone.Flavor.CHOCOLATE, Cone.Flavor.MOKKA}),
+                                iceCreamCar.orderMagnum(Magnum.MagnumType.ALPINENUTS),
+                                iceCreamCar.orderMagnum(Magnum.MagnumType.MILKCHOCOLATE), iceCreamSeller.orderIceRocket()};
                 orders =orders1;
             }catch (Exception e){
                 System.out.println(e.getMessage());
