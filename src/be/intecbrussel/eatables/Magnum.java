@@ -42,5 +42,6 @@ package be.intecbrussel.eatables;
                 return priceMultiplierByMagnumType;
             }
 
+
         }
     }

@@ -29,10 +29,8 @@ public class IceCreamApp {
               
 
             //total profit
-         //System.out.println(Arrays.toString(balls));
-        //System.out.println("Total Profit: " + "€" + iceCreamSeller.getProfit());
-        
-        System.out.println("hello everyone i would like  welcome you\n to my IceCream Salon\nwe have different flavors \n in our IceCream Salon so\n you can choose to your liking btw our ice cream are delicious and\nthank you for ordering from us");
+                System.out.println(priceList.toString() );
+        System.out.println("Total Profit: " + "€" + iceCreamSeller.getProfit());
                 
 
         }

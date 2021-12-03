@@ -18,59 +18,75 @@ import be.intecbrussel.eatables.Magnum;
         public IceCreamCar(double profit, Stock stock) {
             this.profit = profit;
             this.stock = stock;
-
-       public Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException {
-        if (this.stock.getBalls() >= balls.length && this.stock.getCones() > 0) {
-            return this.prepareCone(balls);
-        } else {
-            throw new NoMoreIceCreamException("No more Cones or balls in stock");
         }
+        @Override
+        public Cone orderCone(Cone.Flavor[] balls) throws NoMoreIceCreamException {
+            return prepareCone(balls);
     }
 
-    private Cone prepareCone(Flavor[] balls) throws NoMoreIceCreamException {
-        return new Cone(balls);
-    }
-
-    public IceRocket orderIceRocket() throws NoMoreIceCreamException {
-        if (this.stock.getIceRockets() > 0) {
-            return this.prepareRocket();
-        } else {
-            throw new NoMoreIceCreamException("No more Rocket in the stock");
-        }
-    }
-
-    private IceRocket prepareRocket() {
-        this.profit += this.priceList.getRocketPrice();
-        this.stock.setIceRockets(1);
-        return new IceRocket();
-    }
-
-    public Magnum orderMagnum(MagnumType magnumType) throws NoMoreIceCreamException {
-        if (this.stock.getMagni() > 0) {
-            return this.prepareMagnum(magnumType);
-        } else {
-            throw new NoMoreIceCreamException("No more Magnum in the stock");
-        }
-    }
-
-    private Magnum prepareMagnum(MagnumType magnumType) throws NoMoreIceCreamException {
-        while(this.stock.getMagni() > 0) {
+        @Override
+        public IceRocket orderIceRocket() throws NoMoreIceCreamException {
+            return prepareRocket();
         }
 
-        this.profit += this.priceList.getMagnumStandardPrice(magnumType);
-        return new Magnum(magnumType);
-    }
-
-    public double getProfit() {
-        return this.profit;
-    }
-
-    public String toString() {
-        return "IceCreamCar{priceList=" + this.priceList + ", stock=" + this.stock + ", profit=" + this.profit + "}";
-    }
-
+        @Override
+        public Magnum orderMagnum(Magnum.MagnumType magnumType) throws NoMoreIceCreamException {
+            return prepareMagnum(magnumType);
         }
 
 
+        private IceRocket prepareRocket()  {
+            if (stock.getIceRockets() > 0) {
+                profit += priceList.getRocketPrice();
+                stock.setIceRockets(stock.getIceRockets() - 1);
+                return new IceRocket();
+            } else {
+                throw new NoMoreIceCreamException("No more Ice Rocket in the stock.");
+            }
+        }
+
+        private Magnum prepareMagnum(Magnum.MagnumType magnumType)  {
+            if (stock.getMagni() > 0) {
+                profit += priceList.getMagnumStandardPrice(magnumType);
+                stock.setMagni(stock.getMagni() - 1);
+                return new Magnum(magnumType);
+            } else {
+                throw new NoMoreIceCreamException("No more Magnum in the stock");
+            }
+        }
+
+        private Cone prepareCone(Cone.Flavor[] balls) {
+            if (stock.getCones( ) > 0 && stock.getBalls( ) > 0) {
+                if (stock.getBalls( ) >= balls.length) {
+                    profit += balls.length * priceList.getBallPrice( );
+                    stock.setBalls(stock.getBalls( ) - balls.length);
+                } else {
+                    profit += stock.getBalls( ) * priceList.getBallPrice( );
+                    stock.setBalls(0);
+                }
+                stock.setCones(stock.getCones( ) - 1);
+                return new Cone(balls);
+            } else {
+                throw new NoMoreIceCreamException("No more Cone or balls in the stock");
+            }
+
+                }
+
+        @Override
+        public double getProfit() {
+            return profit;
+        }
+        public Stock getStock() {
+            return stock;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("This is my IceCreamCar because\n" +
+                    " of the covid19\\nwe didn't sell a lot of ice cream but\n" +
+                    " we hope the situation\\n will become normal and by the way\n" +
+                    " our ice cream are delicious and\nthank you for ordering from us"+ "");
+        }
+    }
 
 

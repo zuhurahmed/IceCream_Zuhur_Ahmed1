@@ -45,4 +45,13 @@ public class PriceList {
     public double getMagnumStandardPrice(Magnum.MagnumType magnumType) {
         return magnumStandardPrice * (magnumType != null ? 1 : magnumType.getPriceMultiplierByMagnumType());
     }
+
+    @Override
+    public String toString() {
+        return "PriceList{" +
+                "ballPrice=" + ballPrice +
+                ", rocketPrice=" + rocketPrice +
+                ", magnumStandardPrice=" + magnumStandardPrice +
+                '}';
+    }
 }

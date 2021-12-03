@@ -41,5 +41,14 @@ import be.intecbrussel.eatables.Magnum;
         public double getProfit() {
             return this.totalProfit;
         }
+
+        @Override
+        public String toString() {
+            return String.format("hello everyone i would like \" +\n" +
+                    "                    \" welcome you\\n to my IceCream Salon\\nwe have different \" +\n" +
+                    "                    \"flavors \\n in our IceCream Salon so\\n you can choose \" +\n" +
+                    "                    \"to your liking btw our ice cream are delicious and\\nthank you for ordering from us\")\n" +
+                    "                    \"IceCreamSalon"+ "");
+        }
     }
 

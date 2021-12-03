@@ -9,7 +9,6 @@ public class Stock {
 
         //Constructor
         public Stock(int iceRockets, int cones, int balls, int magni) {
-            super();
             this.iceRockets = iceRockets;
             this.cones = cones;
             this.balls = balls;
