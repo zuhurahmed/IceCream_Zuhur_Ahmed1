@@ -8,47 +8,53 @@ import be.intecbrussel.eatables.Magnum;
         private PriceList priceList;
         private double totalProfit;
 
-
-
+// Constructor
         public IceCreamSalon(PriceList priceList) {
             this.priceList = priceList;
         }
 
         //Not Equal (!=)
+        // balls/ priceList > 0
         @Override
         public Cone orderCone(Cone.Flavor[] balls) {
             if (balls != null && priceList != null) {
-                totalProfit += balls.length * priceList.getBallPrice();
-
+                totalProfit += balls.length * priceList.getBallPrice( );
             }
             return new Cone(balls);
         }
+
         //+=increment value of variable by more than 1
         //order new ice rocket
         @Override
         public IceRocket orderIceRocket() throws NoMoreIceCreamException {
-            totalProfit += priceList.getRocketPrice();
-            return new IceRocket();
+            if (totalProfit > 0) {
+                totalProfit += priceList.getRocketPrice( );
+                return new IceRocket( );
+            } else
+                throw new NoMoreIceCreamException( );
+
         }
 
         @Override
         public Magnum orderMagnum(Magnum.MagnumType magnumType) {
-            totalProfit += priceList.getMagnumStandardPrice(magnumType);
-            return new Magnum(magnumType);
+            if (magnumType.getPriceMultiplierByMagnumType( ) > 0) {
+                totalProfit += priceList.getMagnumStandardPrice(magnumType);
+            }
+                return new Magnum(magnumType);
         }
 
         @Override
         public double getProfit() {
-            return this.totalProfit;
+            if (totalProfit >= 0) {
+                return this.totalProfit;
+            }else
+                throw new NoMoreIceCreamException( " TotalProfit > 0 " );
         }
-
         @Override
         public String toString() {
-            return String.format("hello everyone i would like \" +\n" +
-                    "                    \" welcome you\\n to my IceCream Salon\\nwe have different \" +\n" +
-                    "                    \"flavors \\n in our IceCream Salon so\\n you can choose \" +\n" +
-                    "                    \"to your liking btw our ice cream are delicious and\\nthank you for ordering from us\")\n" +
-                    "                    \"IceCreamSalon"+ "");
+            return String.format("hello everyone i would like welcome you\n to my IceCream Salon we have different flavors:" +
+                            " in our IceCream Salon so you can choose \nto your liking btw our ice cream are delicious and\n " +
+                            "thank you for ordering from us\n"+ "IceCreamSalon", "");
         }
     }
 

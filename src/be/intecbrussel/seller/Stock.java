@@ -43,5 +43,9 @@ public class Stock {
             this.magni=magni;
         }
 
+    @Override
+    public String toString() {
+        return super.toString( );
     }
+}
 
